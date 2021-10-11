@@ -1,12 +1,19 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-app-bar
+      v-if="showAppBar"
       clipped-left
       fixed
       app
     >
       <v-toolbar-title v-text="title" />
     </v-app-bar>
+    <v-container v-else>
+      <h1 class="cyan--text text--darken-2">
+        {{ title }}
+      </h1>
+      <v-divider />
+    </v-container>
     <v-main>
       <v-container>
         <Nuxt />
@@ -20,6 +27,11 @@ export default {
   data () {
     return {
       title: 'Swim pace calculator'
+    }
+  },
+  computed: {
+    showAppBar () {
+      return !this.$route?.query?.noappbar
     }
   }
 }

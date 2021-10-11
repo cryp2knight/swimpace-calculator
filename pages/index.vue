@@ -2,7 +2,9 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>What do you want to calculate?</h1>
+        <h2 class="grey--text text--darken-5">
+          What do you want to calculate?
+        </h2>
       </v-col>
     </v-row>
     <choices v-model="type" :items="[PACE, TIME, DISTANCE]" main />
@@ -73,7 +75,7 @@ export default {
       TIME: 'TIME',
       DISTANCE: 'DISTANCE',
       type: '',
-      paceMin: paceMeter,
+      paceMin: paceYard,
       distanceUnit: 'yards',
       timeInputs: {
         hours: 0,
@@ -88,7 +90,7 @@ export default {
         minutes: 0,
         seconds: 0,
         ms: 0,
-        choice: paceMeter
+        choice: paceYard
       },
       result: null
     }
@@ -118,7 +120,7 @@ export default {
     },
     calcPace () {
       const { seconds, minutes, hours } = this.timeInputs
-      const totalSeconds = +seconds + (minutes * 60) + (hours * 360)
+      const totalSeconds = +seconds + (minutes * 60) + (hours * 3600)
       let distance = this.distanceInputs.distance
       if (this.distanceInputs.unit !== conversion[this.paceMin].require) {
         distance = conversion[this.paceMin].convert(distance)
@@ -139,9 +141,9 @@ export default {
       const pace = +seconds + (60 * minutes) + (+`.${ms.toString().trim()}`)
 
       const timeInSeconds = distance * pace / 100
-      const rHours = Math.floor(timeInSeconds / 360)
-      const rMinutes = Math.floor((timeInSeconds - rHours * 360) / 60)
-      const rSeconds = Math.round(timeInSeconds - (rHours * 360) - (rMinutes * 60))
+      const rHours = Math.floor(timeInSeconds / 3600)
+      const rMinutes = Math.floor((timeInSeconds - rHours * 3600) / 60)
+      const rSeconds = Math.round(timeInSeconds - (rHours * 3600) - (rMinutes * 60))
       this.result = {
         hours: rHours || 0,
         minutes: rMinutes || 0,
@@ -152,7 +154,7 @@ export default {
       const { minutes, seconds, ms, choice } = this.paceInputs
       const pace = +seconds + (60 * minutes) + (+`.${ms.toString().trim()}`)
 
-      const totalSeconds = +this.timeInputs.seconds + (this.timeInputs.minutes * 60) + (this.timeInputs.hours * 360)
+      const totalSeconds = +this.timeInputs.seconds + (this.timeInputs.minutes * 60) + (this.timeInputs.hours * 3600)
 
       let distance = (totalSeconds * 100) / pace
       if (this.distanceUnit !== conversion[choice].require) {

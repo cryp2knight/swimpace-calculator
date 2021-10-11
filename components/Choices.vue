@@ -6,8 +6,8 @@
         depressed
         block
         :color="value === item ? `${main ? 'error' : 'primary'}` : 'normal'"
-        :height="main ? 100 : undefined"
-        :style="main && 'font-size: 1.5rem; font-weight: 600'"
+        :height="main ? 90 : undefined"
+        :style="main && 'font-size: 1.2rem; font-weight: 600'"
         @click="$emit('input', item)"
       >
         {{ item }}

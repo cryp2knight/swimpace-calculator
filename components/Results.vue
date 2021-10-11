@@ -2,7 +2,7 @@
   <span>
     <v-row>
       <v-col>
-        <h1>{{ type }}</h1>
+        <h1 class="red--text">{{ type }}</h1>
       </v-col>
     </v-row>
     <v-row>
