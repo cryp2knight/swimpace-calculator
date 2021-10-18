@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar
-      v-if="showAppBar"
+      v-if="hasappbar"
       clipped-left
       fixed
       app
@@ -30,8 +30,8 @@ export default {
     }
   },
   computed: {
-    showAppBar () {
-      return !this.$route?.query?.noappbar
+    hasappbar () {
+      return !!this.$route?.query?.appbar
     }
   }
 }

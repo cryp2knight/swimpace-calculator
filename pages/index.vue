@@ -27,8 +27,9 @@
     <v-row v-if="type" justify="center" style="margin-top: 2rem">
       <v-btn
         x-large
+        block
         color="success"
-        style="font-weight: 600; font-size: 1.5rem"
+        style="font-weight: 600"
         @click="calculate"
       >
         Calculate
@@ -75,8 +76,8 @@ export default {
       TIME: 'TIME',
       DISTANCE: 'DISTANCE',
       type: '',
-      paceMin: paceYard,
-      distanceUnit: 'yards',
+      paceMin: paceMeter,
+      distanceUnit: 'meters',
       timeInputs: {
         hours: 0,
         minutes: 0,
@@ -84,13 +85,13 @@ export default {
       },
       distanceInputs: {
         distance: 0,
-        unit: 'yards'
+        unit: 'meters'
       },
       paceInputs: {
         minutes: 0,
         seconds: 0,
         ms: 0,
-        choice: paceYard
+        choice: paceMeter
       },
       result: null
     }
